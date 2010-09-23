@@ -169,7 +169,7 @@ def add_modules(module_names, data_files, includes, excludes, vs2008=True):
                                   data_files, copy_to_root=False)
         
         elif module_name == 'PyQt4':
-            includes += ['sip', 'PyQt4.Qt', 'PyQt4.QtSvg']
+            includes += ['sip', 'PyQt4.Qt', 'PyQt4.QtSvg', 'PyQt4.QtNetwork']
             
             import PyQt4
             pyqt_path = osp.dirname(PyQt4.__file__)
@@ -206,12 +206,16 @@ def add_modules(module_names, data_files, includes, excludes, vs2008=True):
         
         elif module_name == 'matplotlib':
             if 'matplotlib' in excludes:
-                excludes.pop('matplotlib')
+                excludes.pop(excludes.index('matplotlib'))
             includes += ['matplotlib.numerix.ma',
                          'matplotlib.numerix.fft',
                          'matplotlib.numerix.linear_algebra',
                          'matplotlib.numerix.mlab',
                          'matplotlib.numerix.random_array']
+            add_module_data_files('matplotlib', ('mpl-data',),
+                                  ('.conf', '.glade', '', '.png', '.svg',
+                                   '.xpm', '.ppm', '.npy', '.afm', '.ttf'),
+                                  data_files)
             #TODO: adding matplotlib's data directory
         
         elif module_name == 'h5py':
@@ -225,7 +229,8 @@ def add_modules(module_names, data_files, includes, excludes, vs2008=True):
                          'docutils.languages.en',
                          'docutils.languages.fr']
             if module_name == 'rst2pdf':
-                add_module_data_files("rst2pdf", ("styles",), ('.json',),
+                add_module_data_files("rst2pdf", ("styles",),
+                                      ('.json', '.style'),
                                       data_files, copy_to_root=True)
         
         else:
