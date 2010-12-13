@@ -6,7 +6,10 @@
 # (see guidata/__init__.py for details)
 
 """
-Configuration related tools
+configtools
+-----------
+
+The ``guidata.configtools`` module provides configuration related tools.
 """
 
 import os
@@ -44,7 +47,9 @@ def get_translation(modname):
     # fixup environment var LANG in case it's unknown
     if "LANG" not in os.environ:
         import locale
-        os.environ["LANG"] = locale.getdefaultlocale()[0]
+        lang = locale.getdefaultlocale()[0]
+        if lang is not None:
+            os.environ["LANG"] = lang
     try:
         _trans = gettext.translation(modname, get_module_locale_path(modname),
                                      codeset="utf-8")
@@ -159,7 +164,7 @@ def font_is_installed(font):
     """
     Check if font is installed
     """
-    return [fam for fam in QFontDatabase().families() if str(fam)==font]
+    return [fam for fam in QFontDatabase().families() if unicode(fam)==font]
 
 
 MONOSPACE = ['Courier New', 'Bitstream Vera Sans Mono', 'Andale Mono',
@@ -184,6 +189,8 @@ def get_font(conf, section, option=""):
     conf: UserConfig instance
     section [, option]: configuration entry
     """
+    if not option:
+        option = "font"
     if 'font' not in option:
         option += '/font'
     font = QFont()
@@ -202,7 +209,7 @@ def get_font(conf, section, option=""):
                 break
         font.setFamily(family)
     if conf.has_option(section, option+'/size'):
-        font.setPixelSize(conf.get(section, option+'/size'))
+        font.setPointSize(conf.get(section, option+'/size'))
     if conf.get(section, option+'/bold', False):
         font.setWeight(QFont.Bold)
     else:

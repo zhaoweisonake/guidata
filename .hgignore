@@ -1,7 +1,9 @@
 \.pyc$
+\.so$
 \.settings$
 \.ropeproject$
 \.orig$
+\.chm$
 \.pyd$
 ^build/
 ^dist/

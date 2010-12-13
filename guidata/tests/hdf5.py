@@ -13,11 +13,17 @@ file type. This script shows how to save in and then reload data from a HDF5
 file.
 """
 
+try:
+    import guidata.hdf5io #@UnusedImport
+    hdf5_is_available = True
+except ImportError:
+    hdf5_is_available = False
+
+SHOW = hdf5_is_available # Show test in GUI-based test launcher
+
 import os
 from guidata.hdf5io import HDF5Reader, HDF5Writer
 from all_features import TestParameters, removefiles
-
-SHOW = True # Show test in GUI-based test launcher
 
 if __name__ == '__main__':
     # Create QApplication

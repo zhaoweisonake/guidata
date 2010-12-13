@@ -645,12 +645,12 @@ class FloatArrayWidget(AbstractDataSetWidget):
         self.first_line.addWidget(edit_button)
         self.layout.addLayout(self.first_line, 0, 0)
         
-        self.max_line, self.max_label = get_image_layout("max.png",
-                                                 _("Largest element in array"))
-        self.layout.addLayout(self.max_line, 1, 0)
         self.min_line, self.min_label = get_image_layout("min.png",
                                                  _("Smallest element in array"))
-        self.layout.addLayout(self.min_line, 2, 0)
+        self.layout.addLayout(self.min_line, 1, 0)
+        self.max_line, self.max_label = get_image_layout("max.png",
+                                                 _("Largest element in array"))
+        self.layout.addLayout(self.max_line, 2, 0)
         
         QObject.connect(edit_button, SIGNAL("clicked()"), self.edit_array )
         self.arr = None # le tableau si il a été modifié
@@ -660,15 +660,16 @@ class FloatArrayWidget(AbstractDataSetWidget):
         """Open an array editor dialog"""
         label = self.item.get_prop_value("display", "label")
         format = self.item.get_prop_value("display", "format")
-        xy = self.item.get_prop_value("display", "xy")
         editor = ArrayEditor(self.parent_layout.parent)
-        if editor.setup_and_check(self.arr, title=label, format=format, xy=xy):
+        if editor.setup_and_check(self.arr, title=label, format=format):
             if editor.exec_():
                 self.update(self.arr)
         
     def get(self):
         """Override AbstractDataSetWidget method"""
         self.arr = numpy.array(self.item.get(), copy=False)
+        if self.item.get_prop_value("display", "transpose"):
+            self.arr = self.arr.T
         self.update(self.arr)
 
     def update(self, arr):
@@ -678,12 +679,31 @@ class FloatArrayWidget(AbstractDataSetWidget):
             shape = (1,) + shape
         dim = " x ".join( [ str(d) for d in shape ])
         self.dim_label.setText(dim)
-        self.min_label.setText(u"%s" % arr.min())
-        self.max_label.setText(u"%s" % arr.max())
+        
+        format = self.item.get_prop_value("display", "format")
+        minmax = self.item.get_prop_value("display", "minmax")
+        try:
+            if minmax == "all":
+                mint = format % arr.min()
+                maxt = format % arr.max()
+            elif minmax == "columns":
+                mint = ", ".join([format % arr[r, :].min()
+                                  for r in range(arr.shape[0])])
+                maxt = ", ".join([format % arr[r, :].max()
+                                  for r in range(arr.shape[0])])
+            else:
+                mint = ", ".join([format % arr[:, r].min()
+                                  for r in range(arr.shape[1])])
+                maxt = ", ".join([format % arr[:, r].max()
+                                  for r in range(arr.shape[1])])
+        except (TypeError, IndexError):
+            mint, maxt = "-", "-"
+        self.min_label.setText(mint)
+        self.max_label.setText(maxt)
 
     def set(self):
         """Override AbstractDataSetWidget method"""
-        self.item.set(self.value())
+        self.item.set(self.value().T)
 
     def value(self):
         return self.arr
@@ -692,50 +712,6 @@ class FloatArrayWidget(AbstractDataSetWidget):
                       row_span=1, column_span=1):
         """Override AbstractDataSetWidget method"""
         layout.addWidget(self.group, row, label_column, row_span, column_span+1)
-
-
-class XYWidget(FloatArrayWidget):
-    """
-    XYItem widget
-    """
-    def __init__(self, item, parent_layout):
-        super(XYWidget, self).__init__(item, parent_layout)
-        self.dim_label.setToolTip(_("Number of curves x Number of points"))
-        self.min_label.setToolTip(_("Smallest y-axis value"))
-        self.max_label.setToolTip(_("Largest y-axis value"))
-        self.xmin_line, self.xmin_label = get_image_layout("xmin.png",
-                                                   _("Smallest x-axis value"))
-        self.layout.addLayout(self.xmin_line, 3, 0)
-        self.xmax_line, self.xmax_label = get_image_layout("xmax.png",
-                                                   _("Largest x-axis value"))
-        self.layout.addLayout(self.xmax_line, 4, 0)
-
-    def get(self):
-        """Override AbstractDataSetWidget method"""
-        value = self.item.get()
-        if value is None:
-            return
-        xarr, yarr = value
-        N, M = yarr.shape
-        self.arr = numpy.zeros( (N+1, M), float)
-        self.arr[0, :] = xarr
-        self.arr[1:, :] = yarr
-        self.update(self.arr)
-
-    def update(self, arr):
-        """Override AbstractDataSetWidget method"""
-        super(XYWidget, self).update(arr[1:, :])
-        self.xmin_label.setText(u"%s" % arr[0, :].min())
-        self.xmax_label.setText(u"%s" % arr[0, :].max())
-
-    def set(self):
-        """Override AbstractDataSetWidget method"""
-        self.item.set(self.value())
-
-    def value(self):
-        xarr = numpy.array(self.arr[0, :])
-        yarr = numpy.array(self.arr[1:, :])
-        return (xarr, yarr)
 
 
 class ButtonWidget(AbstractDataSetWidget):
