@@ -1,0 +1,503 @@
+# -*- coding: utf-8 -*-
+# guidata module translation file
+# Copyright (C) 2009 CEA
+# Pierre Raybaut <pierre.raybaut@cea.fr>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-02-16 15:14+Paris, Madrid\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: utf-8\n"
+"Generated-By: pygettext.py 1.5\n"
+
+#: guidata\dataset\dataitems.py:37
+msgid "float"
+msgstr "flottant"
+
+#: guidata\dataset\dataitems.py:37
+msgid "integer"
+msgstr "entier"
+
+#: guidata\dataset\dataitems.py:42
+msgid " and "
+msgstr " et "
+
+#: guidata\dataset\dataitems.py:42
+msgid " between "
+msgstr " compris entre "
+
+#: guidata\dataset\dataitems.py:44
+msgid " higher than "
+msgstr " supérieur à "
+
+#: guidata\dataset\dataitems.py:46
+msgid " lower than "
+msgstr " inférieur à "
+
+#: guidata\dataset\dataitems.py:48
+msgid "non zero"
+msgstr "non nul"
+
+#: guidata\dataset\dataitems.py:117
+msgid "even"
+msgstr "pair"
+
+#: guidata\dataset\dataitems.py:119
+msgid "odd"
+msgstr "impair"
+
+#: guidata\dataset\dataitems.py:237
+msgid "all file types"
+msgstr "tout type de fichier"
+
+#: guidata\dataset\dataitems.py:238
+msgid "supported file types:"
+msgstr "types de fichiers pris en charge : "
+
+#: guidata\dataset\qtitemwidgets.py:221 guidata\dataset\qtitemwidgets.py:274
+msgid "Value is forced to %d"
+msgstr "La valeur est imposée à %d"
+
+#: guidata\dataset\qtitemwidgets.py:486
+msgid "%s files"
+msgstr "Fichiers %s"
+
+#: guidata\dataset\qtitemwidgets.py:489
+msgid "All supported files"
+msgstr "Tous les fichiers pris en charge"
+
+#: guidata\dataset\qtitemwidgets.py:645
+msgid "Number of rows x Number of columns"
+msgstr "Nombre de lignes x Nombre de colonnes"
+
+#: guidata\dataset\qtitemwidgets.py:647
+msgid "Edit array contents"
+msgstr "Modifier le contenu du tableau"
+
+#: guidata\dataset\qtitemwidgets.py:653
+msgid "Smallest element in array"
+msgstr "Valeur minimale du tableau"
+
+#: guidata\dataset\qtitemwidgets.py:656
+msgid "Largest element in array"
+msgstr "Valeur maximale du tableau"
+
+#: guidata\dataset\qtwidgets.py:121
+msgid "Some required entries are incorrect"
+msgstr "Les champs surlignés n'ont pas été remplis correctement."
+
+#: guidata\dataset\qtwidgets.py:122
+msgid "Please check highlighted fields."
+msgstr "Veuillez vérifier votre saisie."
+
+#: guidata\dataset\qtwidgets.py:470
+msgid "Apply"
+msgstr "Appliquer"
+
+#: guidata\editors\arrayeditor.py:314 guidata\editors\arrayeditor.py:478
+#: guidata\editors\arrayeditor.py:546
+msgid "Array editor"
+msgstr "Éditeur de tableaux"
+
+#: guidata\editors\arrayeditor.py:315
+msgid ""
+"Resizing cells of a table of such size could take a long time.\n"
+"Do you want to continue anyway?"
+msgstr ""
+"Redimensionner les cellules d'un tableau d'une telle taille sera "
+"probablement très long.\n"
+"Souhaitez-vous néanmoins effectuer cette opération ?"
+
+#: guidata\editors\arrayeditor.py:327 guidata\editors\dicteditor.py:656
+msgid "Copy"
+msgstr "Copier"
+
+#: guidata\editors\arrayeditor.py:388 guidata\editors\arrayeditor.py:422
+msgid "Format"
+msgstr "Format"
+
+#: guidata\editors\arrayeditor.py:393
+msgid "Resize"
+msgstr "Ajuster"
+
+#: guidata\editors\arrayeditor.py:396
+msgid "Background color"
+msgstr "Couleur de fond"
+
+#: guidata\editors\arrayeditor.py:423
+msgid "Float formatting"
+msgstr "Format de flottant"
+
+#: guidata\editors\arrayeditor.py:430
+msgid "Error"
+msgstr "Erreur"
+
+#: guidata\editors\arrayeditor.py:431
+msgid "Format (%1) is incorrect"
+msgstr "Le format (%1) est incorrect"
+
+#: guidata\editors\arrayeditor.py:452
+msgid "Array is empty"
+msgstr "Le tableau est vide"
+
+#: guidata\editors\arrayeditor.py:455
+msgid "Arrays with more than 2 dimensions are not supported"
+msgstr "Les tableaux ayant plus de deux dimensions ne sont pas pris en charge"
+
+#: guidata\editors\arrayeditor.py:459
+msgid "The 'xlabels' argument length do no match array column number"
+msgstr "La taille de l'argument 'xlabels' ne correspond pas au nombre de colonnes du tableau"
+
+#: guidata\editors\arrayeditor.py:463
+msgid "The 'ylabels' argument length do no match array row number"
+msgstr "La taille de l'argument 'ylabels' ne correspond pas au nombre de lignes du tableau"
+
+#: guidata\editors\arrayeditor.py:470
+msgid "%1 arrays"
+msgstr "les tableaux %1"
+
+#: guidata\editors\arrayeditor.py:471
+msgid "%1 are currently not supported"
+msgstr "Attention: %1 ne sont pas pris en charge"
+
+#: guidata\editors\arrayeditor.py:480
+msgid "read only"
+msgstr "lecture seule"
+
+#: guidata\editors\arrayeditor.py:501
+msgid "Record array fields:"
+msgstr "Champs :"
+
+#: guidata\editors\dicteditor.py:204
+msgid "unknown"
+msgstr "inconnue"
+
+#: guidata\editors\dicteditor.py:245
+msgid "Index"
+msgstr "Indice"
+
+#: guidata\editors\dicteditor.py:247 guidata\editors\importwizard.py:471
+msgid "Name"
+msgstr "Nom"
+
+#: guidata\editors\dicteditor.py:250
+msgid "Tuple"
+msgstr "Tuple"
+
+#: guidata\editors\dicteditor.py:253
+msgid "List"
+msgstr "Liste"
+
+#: guidata\editors\dicteditor.py:256
+msgid "Dictionary"
+msgstr "Dictionnaire"
+
+#: guidata\editors\dicteditor.py:258
+msgid "Key"
+msgstr "Clé"
+
+#: guidata\editors\dicteditor.py:262
+msgid "elements"
+msgstr "éléments"
+
+#: guidata\editors\dicteditor.py:385
+msgid "Type"
+msgstr "Type"
+
+#: guidata\editors\dicteditor.py:386
+msgid "Size"
+msgstr "Taille"
+
+#: guidata\editors\dicteditor.py:387
+msgid "Value"
+msgstr "Valeur"
+
+#: guidata\editors\dicteditor.py:462 guidata\editors\dicteditor.py:600
+msgid "Edit item"
+msgstr "Modifier"
+
+#: guidata\editors\dicteditor.py:463
+msgid "<b>Unable to retrieve data.</b><br><br>Error message:<br>%1"
+msgstr ""
+
+#: guidata\editors\dicteditor.py:601
+msgid "<b>Unable to assign data to item.</b><br><br>Error message:<br>%1"
+msgstr ""
+"<b>Impossible d'accéder aux données</b><br><br>Message d'erreur :<br>%1"
+
+#: guidata\editors\dicteditor.py:650
+msgid "Paste"
+msgstr "Coller"
+
+#: guidata\editors\dicteditor.py:660
+msgid "Edit"
+msgstr "Modifier"
+
+#: guidata\editors\dicteditor.py:664 guidata\editors\dicteditor.py:1001
+#: guidata\editors\dicteditor.py:1016
+msgid "Plot"
+msgstr "Tracer"
+
+#: guidata\editors\dicteditor.py:669
+msgid "Show image"
+msgstr "Afficher l'image"
+
+#: guidata\editors\dicteditor.py:674 guidata\editors\dicteditor.py:1022
+msgid "Save array"
+msgstr "Enregistrer le tableau"
+
+#: guidata\editors\dicteditor.py:679 guidata\editors\dicteditor.py:961
+#: guidata\editors\dicteditor.py:971
+msgid "Insert"
+msgstr "Insérer"
+
+#: guidata\editors\dicteditor.py:683 guidata\editors\dicteditor.py:911
+msgid "Remove"
+msgstr "Supprimer"
+
+#: guidata\editors\dicteditor.py:687
+msgid "Truncate values"
+msgstr "Tronquer les valeurs"
+
+#: guidata\editors\dicteditor.py:692
+msgid "Show arrays min/max"
+msgstr "Afficher les min/max des tableaux"
+
+#: guidata\editors\dicteditor.py:697
+msgid "Show collection contents"
+msgstr "Afficher le contenu des séquences"
+
+#: guidata\editors\dicteditor.py:702
+msgid "Always edit in-place"
+msgstr "Édition en ligne pour tous les types"
+
+#: guidata\editors\dicteditor.py:711 guidata\editors\dicteditor.py:929
+msgid "Rename"
+msgstr "Renommer"
+
+#: guidata\editors\dicteditor.py:715
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+#: guidata\editors\dicteditor.py:907
+msgid "Do you want to remove selected item?"
+msgstr "Souhaitez-vous supprimer l'élément sélectionné ?"
+
+#: guidata\editors\dicteditor.py:908
+msgid "Do you want to remove all selected items?"
+msgstr "Souhaitez-vous supprimer les éléments sélectionnés ?"
+
+#: guidata\editors\dicteditor.py:930 guidata\editors\dicteditor.py:962
+msgid "Key:"
+msgstr "Clé :"
+
+#: guidata\editors\dicteditor.py:972
+msgid "Value:"
+msgstr "Valeur :"
+
+#: guidata\editors\dicteditor.py:989
+msgid "Import error"
+msgstr "Erreur d'import"
+
+#: guidata\editors\dicteditor.py:990
+msgid "Please install <b>matplotlib</b> or <b>guiqwt</b>."
+msgstr "Merci d'installer <b>matplotlib</b> ou <b>guiqwt</b>."
+
+#: guidata\editors\dicteditor.py:1002
+msgid "<b>Unable to plot data.</b><br><br>Error message:<br>%1"
+msgstr ""
+"<b>Impossible d'afficher les données</b><br><br>Message d'erreur :<br>%1"
+
+#: guidata\editors\dicteditor.py:1017
+msgid "<b>Unable to show image.</b><br><br>Error message:<br>%1"
+msgstr "<b>Impossible d'afficher l'image</b><br><br>Message d'erreur :<br>%1"
+
+#: guidata\editors\dicteditor.py:1027
+msgid "NumPy arrays"
+msgstr "Tableaux NumPy"
+
+#: guidata\editors\dicteditor.py:1037
+msgid "<b>Unable to save array</b><br><br>Error message:<br>%1"
+msgstr ""
+"<b>Impossible d'enregistrer le tableau</b><br><br>Message d'erreur :<br>%1"
+
+#: guidata\editors\dicteditor.py:1053
+msgid "Clipboard contents"
+msgstr "Contenu du presse-papiers"
+
+#: guidata\editors\dicteditor.py:1069
+msgid "Import from clipboard"
+msgstr "Importer depuis le presse-papiers"
+
+#: guidata\editors\dicteditor.py:1073
+msgid "Empty clipboard"
+msgstr "Presse-papiers vide"
+
+#: guidata\editors\dicteditor.py:1074
+msgid "Nothing to be imported from clipboard."
+msgstr "Aucune donnée ne peut être importée depuis le presse-papiers."
+
+#: guidata\editors\dicteditor.py:1356
+msgid "Edit data in the remote process"
+msgstr ""
+
+#: guidata\editors\dicteditor.py:1357
+msgid ""
+"Editors are opened in the remote process for NumPy arrays, PIL images, "
+"lists, tuples and dictionaries.\n"
+"This avoids transfering large amount of data between the remote process and "
+"Spyder (through the socket)."
+msgstr ""
+
+#: guidata\editors\importwizard.py:108
+msgid "Import as"
+msgstr "Importer en tant que"
+
+#: guidata\editors\importwizard.py:110
+msgid "data"
+msgstr "données"
+
+#: guidata\editors\importwizard.py:114
+msgid "code"
+msgstr "code"
+
+#: guidata\editors\importwizard.py:117 guidata\editors\importwizard.py:458
+msgid "text"
+msgstr "texte"
+
+#: guidata\editors\importwizard.py:129
+msgid "Column separator:"
+msgstr "Séparateur de colonne :"
+
+#: guidata\editors\importwizard.py:133
+msgid "Tab"
+msgstr "Tab"
+
+#: guidata\editors\importwizard.py:136 guidata\editors\importwizard.py:154
+msgid "other"
+msgstr "autre"
+
+#: guidata\editors\importwizard.py:147
+msgid "Row separator:"
+msgstr "Séparateur de ligne :"
+
+#: guidata\editors\importwizard.py:151
+msgid "EOL"
+msgstr "EOL"
+
+#: guidata\editors\importwizard.py:167
+msgid "Additionnal options"
+msgstr "Options supplémentaires"
+
+#: guidata\editors\importwizard.py:172
+msgid "Skip rows:"
+msgstr "Sauter des lignes :"
+
+#: guidata\editors\importwizard.py:183
+msgid "Comments:"
+msgstr "Commentaires :"
+
+#: guidata\editors\importwizard.py:189
+msgid "Transpose"
+msgstr "Transposer"
+
+#: guidata\editors\importwizard.py:411
+msgid "Import as array"
+msgstr "Importer en tant que tableau"
+
+#: guidata\editors\importwizard.py:441 guidata\editors\importwizard.py:535
+msgid "Import wizard"
+msgstr "Assistant d'importation"
+
+#: guidata\editors\importwizard.py:446
+msgid "Raw text"
+msgstr "Text brut"
+
+#: guidata\editors\importwizard.py:449
+msgid "variable_name"
+msgstr "nom_de_variable"
+
+#: guidata\editors\importwizard.py:461
+msgid "table"
+msgstr "tableau"
+
+#: guidata\editors\importwizard.py:463
+msgid "Preview"
+msgstr "Aperçu"
+
+#: guidata\editors\importwizard.py:479 guidata\qtwidgets.py:247
+msgid "Cancel"
+msgstr "Annuler"
+
+#: guidata\editors\importwizard.py:485
+msgid "Previous"
+msgstr "Précédent"
+
+#: guidata\editors\importwizard.py:490
+msgid "Next"
+msgstr "Suivant"
+
+#: guidata\editors\importwizard.py:494
+msgid "Done"
+msgstr "Terminer"
+
+#: guidata\editors\importwizard.py:536
+msgid ""
+"<b>Unable to proceed to next step</b><br><br>Please check your entries."
+"<br><br>Error message:<br>%2"
+msgstr ""
+"<b>Impossible de passer à l'étape suivante</b><br><br>Merci de vérifier "
+"votre saisie.<br><br>Message d'erreur :<br>%2"
+
+#: guidata\editors\texteditor.py:62
+msgid "Text editor"
+msgstr "Éditeur de texte"
+
+#: guidata\guitest.py:53
+msgid "No description available"
+msgstr "Aucune description disponible"
+
+#: guidata\guitest.py:84
+msgid "Description"
+msgstr "Description"
+
+#: guidata\guitest.py:97
+msgid "Source code"
+msgstr "Code source"
+
+#: guidata\guitest.py:103
+msgid "Run this script"
+msgstr "Exécuter ce script"
+
+#: guidata\guitest.py:105
+msgid "Run all tests"
+msgstr "Exécuter tous les tests"
+
+#: guidata\guitest.py:106
+msgid "Quit"
+msgstr "Quitter"
+
+#: guidata\guitest.py:128
+msgid "Tests - %s module"
+msgstr "Tests - Module %s"
+
+#: guidata\qthelpers.py:211
+msgid "Open a file"
+msgstr "Ouvrir un fichier"
+
+#: guidata\qthelpers.py:212
+msgid "All"
+msgstr "Tout"
+
+#: guidata\qthelpers.py:214
+msgid "Opening "
+msgstr "Ouverture de "
+
+#: guidata\qtwidgets.py:252
+msgid "Progression"
+msgstr "Progression"
