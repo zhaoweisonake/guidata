@@ -1,0 +1,16 @@
+\.pyc$
+\.so$
+\.settings$
+\.ropeproject$
+\.orig$
+\.chm$
+\.pyd$
+^build/
+^dist/
+Thumbs.db$
+test.h5$
+test.eta$
+essai.csv$
+MANIFEST$
+\.pot$
+~$
