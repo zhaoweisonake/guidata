@@ -54,7 +54,9 @@ class DataSetEditDialog(QDialog):
         self.apply_func = apply
         self.layout = QVBoxLayout()
         if instance.get_comment():
-            self.layout.addWidget(QLabel(instance.get_comment()))
+            label = QLabel(instance.get_comment())
+            label.setWordWrap(True)
+            self.layout.addWidget(label)
         self.instance = instance
         self.edit_layout = [  ]
 
@@ -146,7 +148,9 @@ class DataSetGroupEditDialog(DataSetEditDialog):
             layout = QVBoxLayout()
             layout.setAlignment(Qt.AlignTop)
             if dataset.get_comment():
-                layout.addWidget(QLabel(dataset.get_comment()))
+                label = QLabel(dataset.get_comment())
+                label.setWordWrap(True)
+                layout.addWidget(label)
             grid = QGridLayout()
             self.edit_layout.append( self.layout_factory(dataset, grid) )
             layout.addLayout(grid)
@@ -351,14 +355,15 @@ class DataSetShowWidget(AbstractDataSetWidget):
             return repval
         else:
             fmt = self.item.get_prop_value("display", "format", u"%s")
-
-            if callable(fmt) and value is not None:
-                return fmt(value)
+            func = self.item.get_prop_value("display", "func", lambda x:x)
+            new_value = func(value)
+            if callable(fmt) and new_value is not None:
+                return fmt(new_value)
             elif isinstance(fmt, basestring):
                 fmt = unicode(fmt)
 
             if value is not None:
-                text = fmt % (value,)
+                text = fmt % (new_value, )
             else:
                 text = u""
             return text
@@ -444,13 +449,19 @@ class DataSetShowGroupBox(QGroupBox):
         QGroupBox.__init__(self, label)
         self.klass = klass
         self.dataset = klass(**kwargs)
-        self.layout = QGridLayout()
+        self.layout = QVBoxLayout()
+        if self.dataset.get_comment():
+            label = QLabel(self.dataset.get_comment())
+            label.setWordWrap(True)
+            self.layout.addWidget(label)
+        self.grid_layout = QGridLayout()
+        self.layout.addLayout(self.grid_layout)
         self.setLayout(self.layout)
         self.edit = self.get_edit_layout()
         
     def get_edit_layout(self):
         """Return edit layout"""
-        return DataSetShowLayout(self, self.dataset, self.layout) 
+        return DataSetShowLayout(self, self.dataset, self.grid_layout) 
 
     def get(self):
         """Update group box contents from data item values"""
@@ -480,11 +491,12 @@ class DataSetEditGroupBox(DataSetShowGroupBox):
             apply_btn = QPushButton(button_icon, button_text, self)
             self.connect(apply_btn, SIGNAL("clicked()"), self.set)
             layout = self.edit.layout
-            layout.addWidget(apply_btn, layout.rowCount(), 0, 1, -1, Qt.AlignRight)
+            layout.addWidget(apply_btn, layout.rowCount(),
+                             0, 1, -1, Qt.AlignRight)
 
     def get_edit_layout(self):
         """Return edit layout"""
-        return DataSetEditLayout(self, self.dataset, self.layout)
+        return DataSetEditLayout(self, self.dataset, self.grid_layout)
         
     def set(self):
         """Update data item values from layout contents"""

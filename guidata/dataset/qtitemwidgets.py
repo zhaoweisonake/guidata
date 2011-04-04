@@ -220,7 +220,7 @@ class LineEditWidget(AbstractDataSetWidget):
                 self.edit.setEnabled(False)
             self.edit.setToolTip(_("Value is forced to %d") % item.get_max())
         QObject.connect(self.edit, SIGNAL("textChanged(QString)"),
-                        self.line_edit_changed )
+                        self.line_edit_changed)
 
     def get(self):
         """Override AbstractDataSetWidget method"""
@@ -230,18 +230,17 @@ class LineEditWidget(AbstractDataSetWidget):
             uvalue = utf8_to_unicode(value)
             if uvalue!=old_value:
                 self.edit.setText(utf8_to_unicode(value))
-                self.line_edit_changed( value )
+                self.line_edit_changed(value)
         else:
-            self.line_edit_changed( value )
-            
+            self.line_edit_changed(value)
             
     def line_edit_changed(self, qvalue):
         """QLineEdit validator"""
         value = self.item.from_string(unicode(qvalue))
         if not self.item.check_value(value):
-            self.edit.setStyleSheet( "background-color:rgb(255, 175, 90);" )
+            self.edit.setStyleSheet("background-color:rgb(255, 175, 90);")
         else:
-            self.edit.setStyleSheet( "" )
+            self.edit.setStyleSheet("")
             cb = self.item.get_prop_value("display", "callback", None)
             if cb is not None:
                 cb(self.item.instance, self.item.item, value)
@@ -249,7 +248,9 @@ class LineEditWidget(AbstractDataSetWidget):
         
     def update(self, value):
         """Override AbstractDataSetWidget method"""
-        pass
+        cb = self.item.get_prop_value("display", "value_callback", None)
+        if cb is not None:
+            cb(value)
 
     def value(self):
         return unicode(self.edit.text())
@@ -289,9 +290,9 @@ class TextEditWidget(AbstractDataSetWidget):
         """QLineEdit validator"""
         value = self.item.from_string(self.__get_text())
         if not self.item.check_value(value):
-            self.edit.setStyleSheet( "background-color:rgb(255, 175, 90);" )
+            self.edit.setStyleSheet("background-color:rgb(255, 175, 90);")
         else:
-            self.edit.setStyleSheet( "" )
+            self.edit.setStyleSheet("")
         self.update(value)
         
     def update(self, value):
@@ -435,7 +436,8 @@ class ColorWidget(HLayoutMixin, LineEditWidget):
         self.group.addWidget(self.button)
         
     def update(self, value):
-        """Override AbstractDataSetWidget method"""
+        """Reimplement LineEditWidget method"""
+        LineEditWidget.update(self, value)
         color = text_to_qcolor(value)
         if color.isValid():
             bitmap = QPixmap(16, 16)
@@ -470,6 +472,7 @@ class FileWidget(HLayoutMixin, LineEditWidget):
         QObject.connect(button, SIGNAL("clicked()"), self.select_file)
         self.group.addWidget(button)
         self.basedir = item.get_prop_value("data", "basedir")
+        self.all_files_first = item.get_prop_value("data", "all_files_first")
 
     def select_file(self):
         """Open a file selection dialog box"""
@@ -485,9 +488,12 @@ class FileWidget(HLayoutMixin, LineEditWidget):
         formats = [unicode(format).lower() for format in _formats]
         filter_lines = [(_("%s files")+" (*.%s)") % (format.upper(), format)
                         for format in formats]
+        all_filter = _("All supported files")+" (*.%s)" % " *.".join(formats)
         if len(formats) > 1:
-            filter_lines.append(_("All supported files")+" (*.%s)" \
-                                % " *.".join(formats))
+            if self.all_files_first:
+                filter_lines.insert(0, all_filter)
+            else:
+                filter_lines.append(all_filter)
         if fname is None:
             fname = ""
         try:
@@ -518,10 +524,10 @@ class DirectoryWidget(HLayoutMixin, LineEditWidget):
         """Open a directory selection dialog box"""
         value = self.item.from_string(unicode(self.edit.text()))
         parent = self.parent_layout.parent
-        if isinstance(parent, QGroupBox):
-            child_title = parent.parent().child_title
-        else:
+        try:
             child_title = parent.child_title
+        except AttributeError:
+            child_title = parent.parent().child_title
         dname = getExistingDirectory(parent,
                                      child_title(self.item),
                                      os.path.basename(value))
