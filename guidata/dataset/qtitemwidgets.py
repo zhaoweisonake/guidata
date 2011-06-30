@@ -678,14 +678,12 @@ class FloatArrayWidget(AbstractDataSetWidget):
     def edit_array(self):
         """Open an array editor dialog"""
         parent = self.parent_layout.parent
-        from guidata.utils import is_compatible_spyderlib_installed
-        if is_compatible_spyderlib_installed(parent):
-            label = self.item.get_prop_value("display", "label")
-            from spyderlib.widgets.arrayeditor import ArrayEditor
-            editor = ArrayEditor(parent)
-            if editor.setup_and_check(self.arr, title=label):
-                if editor.exec_():
-                    self.update(self.arr)
+        label = self.item.get_prop_value("display", "label")
+        from spyderlib.widgets.arrayeditor import ArrayEditor
+        editor = ArrayEditor(parent)
+        if editor.setup_and_check(self.arr, title=label):
+            if editor.exec_():
+                self.update(self.arr)
         
     def get(self):
         """Override AbstractDataSetWidget method"""
@@ -774,6 +772,9 @@ class ButtonWidget(AbstractDataSetWidget):
         layout.addWidget(self.group, row, label_column, row_span, column_span+1)
 
     def clicked(self, *args):
+        for widget in self.parent_layout.widgets:
+            # widget may have been modified, so we update the dataset
+            widget.set()
         callback = self.item.get_prop_value("display", "callback")
         inst = self.item.instance
         item = self.item.item
